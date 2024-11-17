@@ -38,6 +38,14 @@ public class BlogService implements CommandLineRunner {
 				LocalDateTime.now(),
 				LocalDateTime.now()
 		));
+		repo.save(new Blog(++count,
+				"How to push spring boot project in github",
+				"some content",
+				"React",
+				Arrays.asList("React", "JavaScript"),
+				LocalDateTime.now(),
+				LocalDateTime.now()
+		));
 		
 	}
 
