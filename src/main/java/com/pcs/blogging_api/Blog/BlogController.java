@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,8 +22,8 @@ public class BlogController {
 	}
 	
 	@GetMapping("/blogposts")
-	public List<Blog> retrieveAllPosts(){
-		return service.getAllBlogPosts();
+	public List<Blog> retrieveAllPosts(@RequestParam(value = "search", required = false) String searchTerm){
+		return service.getFilteredBlogPosts(searchTerm);
 	}
 	
 	@GetMapping("/blogposts/{id}")
@@ -48,6 +49,6 @@ public class BlogController {
 	public void UpdatePostById(@PathVariable long id, @RequestBody Blog blog) {
 		service.updateBlogPostById(id, blog);
 	}
-	
+
 	
 }

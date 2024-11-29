@@ -74,5 +74,12 @@ public class BlogService implements CommandLineRunner {
 		blog.setId(id);
 		repo.save(blog);
 	}
+	
+	public List<Blog> getFilteredBlogPosts(String searchTerm){
+		if(searchTerm == null || searchTerm.isEmpty()) {
+			return repo.findAll();
+		}
+		return repo.findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(searchTerm, searchTerm);
+	}
 
 }
